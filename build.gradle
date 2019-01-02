@@ -7,25 +7,26 @@
  */
 
 plugins {
-    // Apply the java plugin to add support for Java
     id 'java'
-
-    // Apply the application plugin to add support for building an application
     id 'application'
 }
 
+sourceCompatibility = 1.8
+
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
 }
 
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
-    implementation 'com.google.guava:guava:26.0-jre'
+    compile 'io.vavr:vavr:0.9.2'
+    compile 'com.github.javaparser:javaparser-core:2.3.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
 }
 
 // Define the main class for the application
