@@ -9,6 +9,8 @@ import io.vavr.Function2;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 
+import java.util.function.Predicate;
+
 import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
@@ -47,5 +49,9 @@ public class AstExplorer {
 
         return List.ofAll(cu.getTypes())
                 .filter(originalFunctionReversedAndCurriedAndAppliedToMethodName::apply);
+    }
+
+    private static <T> Predicate<T> asPredicate(Function1<T, Boolean> function) {
+        return function::apply;
     }
 }

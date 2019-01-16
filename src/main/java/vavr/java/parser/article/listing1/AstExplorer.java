@@ -15,8 +15,8 @@ import static io.vavr.Predicates.instanceOf;
 
 public class AstExplorer {
 
-    public static boolean hasMethodNamed(TypeDeclaration<?> typeDeclaration, String methodName) {
-        return List.ofAll(typeDeclaration.getMembers())
+    public static boolean hasMethodNamed(TypeDeclaration typeDeclaration, String methodName) {
+        return List.ofAll((NodeList<BodyDeclaration>) typeDeclaration.getMembers())
                 .map(member -> Match(member).of(
                         Case($(instanceOf(MethodDeclaration.class)), t -> Option.of(t.getName().asString())),
                         Case($(), t -> Option.<String>none())
